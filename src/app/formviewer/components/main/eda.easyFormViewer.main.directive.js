@@ -46,6 +46,7 @@ function edaFormViewerDirective($modelsTranslator){
 		scope.$watch(cancelBtnTextToWatch, 	cancelBtnTextWatcher);
 		scope.$watch(submitEventToWatch, 		submitEventWatcher);
 		scope.$watch(cancelEventToWatch, 		cancelEventWatcher);
+		scope.$watch(readOnlyEventToWatch,	readOnlyEventWatcher);
 
 		function dataModelToWatch() {
 			return scope.edaEasyFormViewerDataModel;
@@ -69,6 +70,10 @@ function edaFormViewerDirective($modelsTranslator){
 
 		function cancelEventToWatch(){
 			return scope.vm.hasJustCancelled;
+		}
+
+		function readOnlyEventToWatch() {
+			return scope.vm.edaEasyFormViewerReadOnly;
 		}
 
 		function fieldsModelWatcher(newFieldsModel){
