@@ -21,7 +21,8 @@ function edaFormViewerDirective($modelsTranslator){
 				edaEasyFormViewerSubmitButtonText 						: '@?',
 				edaEasyFormViewerCancelButtonText 						: '@?',
 				edaEasyFormViewerSubmitFormEvent  						: '&?',
-				edaEasyFormViewerCancelFormEvent							: '&?'
+				edaEasyFormViewerCancelFormEvent							: '&?',
+				edaEasyFormViewerReadOnly											:	'=?'
 			},
 			replace 			: false,
 			controller		: EASY_FORM_VIEWER_CONTROLLER,
@@ -37,6 +38,7 @@ function edaFormViewerDirective($modelsTranslator){
 		scope.vm.fields 			= loadFieldsModel();
 		scope.vm.submitText 	= scope.edaEasyFormViewerSubmitButtonText || 'Submit';
 		scope.vm.cancelText 	= scope.edaEasyFormViewerCancelButtonText || 'Cancel';
+		scope.vm.readOnly			= scope.edaEasyFormViewerReadOnly || false;
 
 		scope.$watch(fieldsModelToWatch, 		fieldsModelWatcher, 	true);
 		scope.$watch(dataModelToWatch,			dataModelWatcher,			true);
