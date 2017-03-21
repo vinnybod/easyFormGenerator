@@ -81,6 +81,7 @@ function edaFormViewerDirective($modelsTranslator){
 		}
 
 		function submitBtnTextWatcher(newSubmitBtntext, oldSubmitBtntext){
+			console.log("Submit button watcher triggered");
 			if (newSubmitBtntext !== oldSubmitBtntext) {
 				scope.vm.submitText 	= newSubmitBtntext || 'Submit';
 			}
@@ -116,6 +117,7 @@ function edaFormViewerDirective($modelsTranslator){
 		}
 
 		function readOnlyEventWatcher(newReadOnly){
+				console.log("Read Only Event Watcher Triggered");
 				scope.vm.readonly 	= newReadOnly;
 		}
 
