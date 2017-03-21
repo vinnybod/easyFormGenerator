@@ -44,9 +44,10 @@ function edaFormViewerDirective($modelsTranslator){
 		scope.$watch(dataModelToWatch,			dataModelWatcher,			true);
 		scope.$watch(submitBtnTextToWatch, 	submitBtnTextWatcher);
 		scope.$watch(cancelBtnTextToWatch, 	cancelBtnTextWatcher);
+		scope.$watch(readOnlyEventToWatch,	readOnlyWatcher);
 		scope.$watch(submitEventToWatch, 		submitEventWatcher);
 		scope.$watch(cancelEventToWatch, 		cancelEventWatcher);
-		scope.$watch(readOnlyEventToWatch,	readOnlyEventWatcher);
+
 
 		function dataModelToWatch() {
 			return scope.edaEasyFormViewerDataModel;
@@ -96,6 +97,12 @@ function edaFormViewerDirective($modelsTranslator){
 			scope.vm.model = angular.copy(newDataModel);
 		}
 
+		function readOnlyWatcher(newReadOnly, oldReadOnly){
+			if (newReadOnly !== oldReadOnly) {
+				scope.vm.readonly 	= newReadOnly;
+			}
+		}
+
 		function submitEventWatcher(newSubmitEvent){
 			if (newSubmitEvent === true) {
 					if (angular.isFunction(scope.edaEasyFormViewerSubmitFormEvent)) {
@@ -113,12 +120,6 @@ function edaFormViewerDirective($modelsTranslator){
 					}
 			}
 			scope.vm.hasJustCancelled = false;
-		}
-
-		function readOnlyEventWatcher(newReadOnly, oldReadOnly){
-			if (newReadOnly !== oldReadOnly) {
-				scope.vm.readonly 	= newReadOnly || false;
-			}
 		}
 
 		/**
