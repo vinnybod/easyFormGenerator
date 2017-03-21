@@ -73,7 +73,7 @@ function edaFormViewerDirective($modelsTranslator){
 		}
 
 		function readOnlyEventToWatch() {
-			return scope.vm.edaEasyFormViewerReadOnly;
+			return scope.edaEasyFormViewerReadOnly;
 		}
 
 		function fieldsModelWatcher(newFieldsModel){
