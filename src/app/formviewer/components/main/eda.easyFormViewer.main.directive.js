@@ -118,7 +118,7 @@ function edaFormViewerDirective($modelsTranslator){
 
 		function readOnlyEventWatcher(newReadOnly){
 				console.log("Read Only Event Watcher Triggered");
-				scope.vm.readonly 	= newReadOnly;
+				scope.vm.readOnly 	= newReadOnly;
 		}
 
 		/**
