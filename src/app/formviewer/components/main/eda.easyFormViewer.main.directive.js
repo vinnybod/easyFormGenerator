@@ -22,7 +22,7 @@ function edaFormViewerDirective($modelsTranslator){
 				edaEasyFormViewerCancelButtonText 						: '@?',
 				edaEasyFormViewerSubmitFormEvent  						: '&?',
 				edaEasyFormViewerCancelFormEvent							: '&?',
-				edaEasyFormViewerReadOnly											:	'=?'
+				edaEasyFormViewerReadOnly											:	'@?'
 			},
 			replace 			: false,
 			controller		: EASY_FORM_VIEWER_CONTROLLER,
