@@ -115,6 +115,12 @@ function edaFormViewerDirective($modelsTranslator){
 			scope.vm.hasJustCancelled = false;
 		}
 
+		function readOnlyEventWater(newReadOnly, oldReadOnly){
+			if (newReadOnly !== oldReadOnly) {
+				scope.vm.readonly 	= newReadOnly || false;
+			}
+		}
+
 		/**
 			* TODO : check if formly or easy form generato fields model
 			*
