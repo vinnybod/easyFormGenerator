@@ -105,7 +105,7 @@ function edaFormViewerDirective($modelsTranslator) {
     function submitEventWatcher(newSubmitEvent) {
       if (newSubmitEvent === true) {
         if (angular.isFunction(scope.edaEasyFormViewerSubmitFormEvent)) {
-          const _dataModelSubmitted = scope.vm.model;
+          const _dataModelSubmitted = scope.edaEasyFormViewerDataModel;
           scope.edaEasyFormViewerSubmitFormEvent({
             dataModelSubmitted: _dataModelSubmitted
           });
