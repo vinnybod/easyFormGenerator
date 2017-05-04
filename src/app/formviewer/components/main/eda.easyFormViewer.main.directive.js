@@ -99,7 +99,7 @@ function edaFormViewerDirective($modelsTranslator) {
 
     function dataModelWatcher(newDataModel) {
       // scope.vm.model = angular.copy(newDataModel);
-      scope.edaEasyFormViewerDataModel = anglar.copy(newDataModel);
+      scope.edaEasyFormViewerDataModel = angular.copy(newDataModel);
     }
 
     function submitEventWatcher(newSubmitEvent) {
