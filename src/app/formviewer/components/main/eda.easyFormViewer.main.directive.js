@@ -96,81 +96,81 @@ function edaFormViewerDirective($modelsTranslator) {
       scope.vm.readOnly = newReadOnly;
     }
 
-    function dataModelWatcher(newDataModel {
-        scope.vm.model = angular.copy(newDataModel);
-        scope.edaEasyFormViewerDataModel = angular.copy(newDataModel);
-      }
+    function dataModelWatcher(newDataModel) {
+      scope.vm.model = angular.copy(newDataModel);
+      scope.edaEasyFormViewerDataModel = angular.copy(newDataModel);
+    }
 
-      function submitEventWatcher(newSubmitEvent) {
-        if (newSubmitEvent === true) {
-          if (angular.isFunction(scope.edaEasyFormViewerSubmitFormEvent)) {
-            const _dataModelSubmitted = scope.vm.model;
-            scope.edaEasyFormViewerSubmitFormEvent({
-              dataModelSubmitted: _dataModelSubmitted
-            });
-          }
+    function submitEventWatcher(newSubmitEvent) {
+      if (newSubmitEvent === true) {
+        if (angular.isFunction(scope.edaEasyFormViewerSubmitFormEvent)) {
+          const _dataModelSubmitted = scope.vm.model;
+          scope.edaEasyFormViewerSubmitFormEvent({
+            dataModelSubmitted: _dataModelSubmitted
+          });
         }
-        scope.vm.hasJustSumitted = false;
       }
+      scope.vm.hasJustSumitted = false;
+    }
 
-      function cancelEventWatcher(newCancelEvent) {
-        if (newCancelEvent === true) {
-          if (angular.isFunction(scope.edaEasyFormViewerCancelFormEvent)) {
-            scope.edaEasyFormViewerCancelFormEvent();
-          }
+    function cancelEventWatcher(newCancelEvent) {
+      if (newCancelEvent === true) {
+        if (angular.isFunction(scope.edaEasyFormViewerCancelFormEvent)) {
+          scope.edaEasyFormViewerCancelFormEvent();
         }
-        scope.vm.hasJustCancelled = false;
       }
+      scope.vm.hasJustCancelled = false;
+    }
 
-      /**
-       * TODO : check if formly or easy form generato fields model
-       *
-       * by default or if both -> easy for generator is chosen
-       */
-      function loadFieldsModel() {
-        const initialFieldsModel = angular.isArray(scope.edaEasyFormViewerEasyFormGeneratorFieldsModel) ?
-          loadExistingConfigurationModel(scope.edaEasyFormViewerEasyFormGeneratorFieldsModel) //translate easy form generator to formly fields model
-          :
-          {};
-        return initialFieldsModel;
-      }
+    /**
+     * TODO : check if formly or easy form generato fields model
+     *
+     * by default or if both -> easy for generator is chosen
+     */
+    function loadFieldsModel() {
+      const initialFieldsModel = angular.isArray(scope.edaEasyFormViewerEasyFormGeneratorFieldsModel) ?
+        loadExistingConfigurationModel(scope.edaEasyFormViewerEasyFormGeneratorFieldsModel) //translate easy form generator to formly fields model
+        :
+        {};
+      return initialFieldsModel;
+    }
 
-      function loadExistingConfigurationModel(loadedFieldModel) {
+    function loadExistingConfigurationModel(loadedFieldModel) {
 
-        if (angular.isArray(loadedFieldModel)) {
-          const configlines = returnAttributeConfigurationLinesIfNotEmpty(loadedFieldModel);
-          const formlyFieldsModel = [];
+      if (angular.isArray(loadedFieldModel)) {
+        const configlines = returnAttributeConfigurationLinesIfNotEmpty(loadedFieldModel);
+        const formlyFieldsModel = [];
 
-          scope.configurationLoaded = {};
+        scope.configurationLoaded = {};
 
-          $modelsTranslator.bindConfigurationLines(scope.configurationLoaded, configlines);
-          /**
-           * rebind special control properties :
-           *
-           * formly expression properties
-           * Validators
-           * Validation
-           */
-          $modelsTranslator.refreshControlFormlyExpressionProperties(scope.configurationLoaded);
-          $modelsTranslator.refreshControlFormlyValidators(scope.configurationLoaded);
-          $modelsTranslator.refreshControlFormlyValidation(scope.configurationLoaded);
+        $modelsTranslator.bindConfigurationLines(scope.configurationLoaded, configlines);
+        /**
+         * rebind special control properties :
+         *
+         * formly expression properties
+         * Validators
+         * Validation
+         */
+        $modelsTranslator.refreshControlFormlyExpressionProperties(scope.configurationLoaded);
+        $modelsTranslator.refreshControlFormlyValidators(scope.configurationLoaded);
+        $modelsTranslator.refreshControlFormlyValidation(scope.configurationLoaded);
 
-          //apply configuration model
-          scope.configuration = angular.copy(scope.configurationLoaded);
+        //apply configuration model
+        scope.configuration = angular.copy(scope.configurationLoaded);
 
-          //apply formly model
-          $modelsTranslator.applyConfigurationToformlyModel(scope.configurationLoaded, formlyFieldsModel, scope.vm.model);
+        //apply formly model
+        $modelsTranslator.applyConfigurationToformlyModel(scope.configurationLoaded, formlyFieldsModel, scope.vm.model);
 
-          return formlyFieldsModel;
-        }
+        return formlyFieldsModel;
       }
     }
   }
+}
 
-  edaFormViewerDirective.$inject = [
-    '$modelsTranslator'
-  ];
-  export default edaFormViewerDirective;
-  export {
-    EASY_FORM_VIEWER_DIRECTIVE_NAME
-  };
+edaFormViewerDirective.$inject = [
+  '$modelsTranslator'
+];
+export default edaFormViewerDirective;
+export {
+  EASY_FORM_VIEWER_DIRECTIVE_NAME
+};
