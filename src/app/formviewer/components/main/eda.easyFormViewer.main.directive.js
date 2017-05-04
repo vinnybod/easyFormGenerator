@@ -160,7 +160,7 @@ function edaFormViewerDirective($modelsTranslator) {
         scope.configuration = angular.copy(scope.configurationLoaded);
 
         //apply formly model
-        $modelsTranslator.applyConfigurationToformlyModel(scope.configurationLoaded, formlyFieldsModel, scope.vm.model);
+        $modelsTranslator.applyConfigurationToformlyModel(scope.configurationLoaded, formlyFieldsModel, scope.edaEasyFormViewerDataModel);
 
         return formlyFieldsModel;
       }
