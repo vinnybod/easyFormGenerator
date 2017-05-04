@@ -34,7 +34,7 @@ function edaFormViewerDirective($modelsTranslator) {
 
 
   function linkFct(scope) {
-    scope.vm.model = scope.edaEasyFormViewerDataModel;
+    // scope.vm.model = scope.edaEasyFormViewerDataModel;
     scope.vm.fields = loadFieldsModel();
     scope.vm.submitText = scope.edaEasyFormViewerSubmitButtonText || 'Submit';
     scope.vm.cancelText = scope.edaEasyFormViewerCancelButtonText || 'Cancel';
@@ -49,8 +49,8 @@ function edaFormViewerDirective($modelsTranslator) {
     scope.$watch(cancelEventToWatch, cancelEventWatcher);
 
     function dataModelToWatch() {
-      // return scope.edaEasyFormViewerDataModel;
-      return scope.vm.model;
+      return scope.edaEasyFormViewerDataModel;
+      // return scope.vm.model;
     }
 
     function fieldsModelToWatch() {
