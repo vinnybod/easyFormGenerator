@@ -48,6 +48,10 @@ function edaFormViewerDirective($modelsTranslator) {
     scope.$watch(submitEventToWatch, submitEventWatcher);
     scope.$watch(cancelEventToWatch, cancelEventWatcher);
 
+    scope.$watch(scope.vm.model, function(newDataModel) {
+      scope.edaEasyFormViewerDataModel = angular.copy(newDataModel);
+    }, true);
+
     function dataModelToWatch() {
       return scope.edaEasyFormViewerDataModel;
     }
@@ -98,7 +102,6 @@ function edaFormViewerDirective($modelsTranslator) {
 
     function dataModelWatcher(newDataModel) {
       scope.vm.model = angular.copy(newDataModel);
-      scope.edaEasyFormViewerDataModel = angular.copy(newDataModel);
     }
 
     function submitEventWatcher(newSubmitEvent) {
