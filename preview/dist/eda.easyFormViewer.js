@@ -4289,7 +4289,7 @@
 /* 9 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"easyFormViewer\">\n\t<fieldset ng-disabled=\"vm.readOnly\">\n\t\t<form ng-submit=\"vm.onSubmit()\" name=\"vm.form\">\n\t\t\t<formly-form model=\"edaEasyFormViewerDataModel\" fields=\"vm.fields\" form=\"vm.form\">\n\n\t\t\t\t<div class=\"pull-right\">\n\t\t\t\t\t<button type=\"submit\" class=\"btn btn-primary\" ng-disabled=\"vm.form.$invalid\" ng-click=\"vm.edaSubmitThisDataModel();\">{{vm.submitText}}</button>\n\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary\" ng-click=\"vm.edaCancelEvent();\">{{vm.cancelText}}</button>\n\t\t\t\t</div>\n\n\t\t\t</formly-form>\n\t\t</form>\n\t</fieldset>\n</div>\n"
+	module.exports = "<div class=\"easyFormViewer\">\n\t<fieldset ng-disabled=\"vm.readOnly\">\n\t\t<form ng-submit=\"vm.onSubmit()\" name=\"vm.form\" confirm-on-exit>\n\t\t\t<formly-form model=\"edaEasyFormViewerDataModel\" fields=\"vm.fields\" form=\"vm.form\">\n\n\t\t\t\t<div class=\"pull-right\">\n\t\t\t\t\t<button type=\"submit\" class=\"btn btn-primary\" ng-disabled=\"vm.form.$invalid\" ng-click=\"vm.edaSubmitThisDataModel();\">{{vm.submitText}}</button>\n\t\t\t\t\t<button type=\"button\" class=\"btn btn-primary\" ng-click=\"vm.edaCancelEvent();\">{{vm.cancelText}}</button>\n\t\t\t\t</div>\n\n\t\t\t</formly-form>\n\t\t</form>\n\t</fieldset>\n</div>\n"
 
 /***/ },
 /* 10 */
@@ -6440,7 +6440,7 @@
 
 	module.exports = {
 		"name": "easy-form-generator",
-		"version": "2.1.6",
+		"version": "2.2.0",
 		"description": "create amazing forms without coding : form editor based on angular formly",
 		"scripts": {
 			"clean-dist": "rimraf dist",
