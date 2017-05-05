@@ -34,7 +34,6 @@ function edaFormViewerDirective($modelsTranslator){
 
 
 	function linkFct(scope) {
-		scope.vm.model 				= scope.edaEasyFormViewerDataModel;
 		scope.vm.fields 			= loadFieldsModel();
 		scope.vm.submitText 	= scope.edaEasyFormViewerSubmitButtonText || 'Submit';
 		scope.vm.cancelText 	= scope.edaEasyFormViewerCancelButtonText || 'Cancel';
@@ -44,9 +43,9 @@ function edaFormViewerDirective($modelsTranslator){
 		scope.$watch(dataModelToWatch,			dataModelWatcher,			true);
 		scope.$watch(submitBtnTextToWatch, 	submitBtnTextWatcher);
 		scope.$watch(cancelBtnTextToWatch, 	cancelBtnTextWatcher);
+		scope.$watch(readOnlyToWatch,	readOnlyWatcher);
 		scope.$watch(submitEventToWatch, 		submitEventWatcher);
 		scope.$watch(cancelEventToWatch, 		cancelEventWatcher);
-		scope.$watch(readOnlyEventToWatch,	readOnlyEventWatcher);
 
 		function dataModelToWatch() {
 			return scope.edaEasyFormViewerDataModel;
@@ -64,16 +63,16 @@ function edaFormViewerDirective($modelsTranslator){
 			return scope.edaEasyFormViewerCancelButtonText;
 		}
 
+		function readOnlyToWatch() {
+			return scope.edaEasyFormViewerReadOnly;
+		}
+
 		function submitEventToWatch(){
 			return scope.vm.hasJustSumitted;
 		}
 
 		function cancelEventToWatch(){
 			return scope.vm.hasJustCancelled;
-		}
-
-		function readOnlyEventToWatch() {
-			return scope.edaEasyFormViewerReadOnly;
 		}
 
 		function fieldsModelWatcher(newFieldsModel){
@@ -92,14 +91,18 @@ function edaFormViewerDirective($modelsTranslator){
 			}
 		}
 
+		function readOnlyWatcher(newReadOnly, oldReadOnly) {
+				scope.vm.readOnly 	= newReadOnly;
+		}
+
 		function dataModelWatcher(newDataModel) {
-			scope.vm.model = angular.copy(newDataModel);
+			scope.edaEasyFormViewerDataModel = angular.copy(newDataModel);
 		}
 
 		function submitEventWatcher(newSubmitEvent){
 			if (newSubmitEvent === true) {
 					if (angular.isFunction(scope.edaEasyFormViewerSubmitFormEvent)) {
-						const _dataModelSubmitted = scope.vm.model ;
+						const _dataModelSubmitted = scope.edaEasyFormViewerDataModel ;
 						scope.edaEasyFormViewerSubmitFormEvent({ dataModelSubmitted : _dataModelSubmitted });
 					}
 			}
@@ -113,10 +116,6 @@ function edaFormViewerDirective($modelsTranslator){
 					}
 			}
 			scope.vm.hasJustCancelled = false;
-		}
-
-		function readOnlyEventWatcher(newReadOnly, oldReadOnly) {
-				scope.vm.readOnly 	= newReadOnly;
 		}
 
 		/**
@@ -155,7 +154,7 @@ function edaFormViewerDirective($modelsTranslator){
 				scope.configuration = angular.copy(scope.configurationLoaded);
 
 				//apply formly model
-				$modelsTranslator.applyConfigurationToformlyModel(scope.configurationLoaded, formlyFieldsModel, scope.vm.model);
+				$modelsTranslator.applyConfigurationToformlyModel(scope.configurationLoaded, formlyFieldsModel, scope.edaEasyFormViewerDataModel);
 
 				return  formlyFieldsModel;
 			}

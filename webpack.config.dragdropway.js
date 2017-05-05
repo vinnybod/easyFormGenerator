@@ -51,7 +51,7 @@ module.exports = function makeWebpackConfig () {
    */
   config.output = isTest ? {} : {
     // Absolute output directory
-    path: __dirname + '/dist',
+    path: isProd ? __dirname + '/dist' : __dirname + '/preview/dist',
 
     // Output path from the view of the page
     // Uses webpack-dev-server in development
@@ -91,7 +91,7 @@ module.exports = function makeWebpackConfig () {
   } else if (isProd) {
     config.devtool = 'source-map';
   } else {
-    config.devtool = 'eval-source-map';
+    config.devtool = 'source-map';
   }
 
   /**
@@ -103,7 +103,11 @@ module.exports = function makeWebpackConfig () {
 
   // Initialize module
   config.module = {
-    preLoaders: [],
+    preLoaders: [{
+        test: /\.jsx?$/,
+        loader: 'remove-flow-types',
+        include: path.join(__dirname, './src/app/dragdropway')
+    }],
     loaders: [{
       // JS LOADER
       // Reference: https://github.com/babel/babel-loader
